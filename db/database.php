@@ -1,18 +1,13 @@
 <?php
+require_once __DIR__ . '/../libs/rb-mysql.php';
 
-//Datos de conexión a la base de datos
-$host = 'localhost';
-$db_name = 'restaurantes_db';
-$username = 'root';
-$password = '';
+// Conectar con MySQL
+R::setup('mysql:host=localhost;dbname=restaurantes_db', 'root', '');
 
-//establecer conexión con la base de datos
-$con = new mysqli($host, $username, $password, $db_name);
-$con->set_charset("utf8");
+// Opcional: modo de desarrollo
+R::freeze(false);
 
-// Verificar la conexión
-if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-}else{
-    echo "Conexión exitosa a la base de datos";
+// Verificar conexión
+if (!R::testConnection()) {
+    die(json_encode(["error" => "No se pudo conectar a la base de datos"]));
 }
