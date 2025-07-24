@@ -18,8 +18,10 @@ function cargarRestaurantes() {
           <td>${r.direccion}</td>
           <td>${r.telefono}</td>
           <td>
-            <button onclick="editarRestaurante(${r.id}, '${r.nombre}', '${r.direccion}', '${r.telefono}')">Editar</button>
-            <button onclick="eliminarRestaurante(${r.id})">Eliminar</button>
+            <button onclick="editarRestaurante(${r.id}, '${r.nombre}', '${r.direccion}', '${r.telefono}')">
+            <img src="res/edit_icon.png" alt="Editar" style="width:20px;height:20px;vertical-align:middle;border:none;background:none;" /></button>
+            <button onclick="eliminarRestaurante(${r.id})">
+            <img src="res/delete_icon.png" alt="Borrar" style="width:20px;height:20px;vertical-align:middle;border:none;background:none;" /></button>
           </td>
         </tr>`;
     });

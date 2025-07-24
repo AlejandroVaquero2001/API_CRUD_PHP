@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Restaurantes</title>
+  <link rel="stylesheet" href="res/style.css">
 </head>
 <body>
   <h1>Listado de Restaurantes</h1>
@@ -12,7 +13,7 @@
     <input type="text" id="nombre" placeholder="Nombre" />
     <input type="text" id="direccion" placeholder="Dirección" />
     <input type="text" id="telefono" placeholder="Teléfono" />
-    <button id="submitBtn" onclick="crearRestaurante()">Agregar</button>
+    <button id="submitBtn" onclick="crearRestaurante()" >Agregar</button>
     <button id="cancelBtn" onclick="cancelarEdicion()" style="display:none;">Cancelar</button>
   </div>
 
@@ -22,6 +23,13 @@
     </thead>
     <tbody id="tabla"></tbody>
   </table>
+  <div class="botones-fijos">
+    <a href="https://www.linkedin.com/in/alejandro-vaquero-gonzalez-87544a102/" target="_blank">
+      <button class="icon-btn"><img src="res/linkedin_icon.png"></button>
+    </a>
+    <a href="https://github.com/AlejandroVaquero2001/CRUD-API-en-PHP" target="_blank">
+      <button class="icon-btn"><img src="res/github_icon.png"></button> 
+    </a>
   <script src="../back/apikey_config.php"></script>
   <script src="api_implement.js"></script>
 </body>
