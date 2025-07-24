@@ -1,25 +1,29 @@
-const API = '../crud_functions/';
+const API = '../back/';
 
 function cargarRestaurantes() {
-  fetch(API + 'read.php')
-    .then(res => res.json())
-    .then(data => {
-      const tabla = document.getElementById('tabla');
-      tabla.innerHTML = '';
-      data.forEach(r => {
-        tabla.innerHTML += `
-          <tr>
-            <td>${r.id}</td>
-            <td>${r.nombre}</td>
-            <td>${r.direccion}</td>
-            <td>${r.telefono}</td>
-            <td>
-              <button onclick="editarRestaurante(${r.id}, '${r.nombre}', '${r.direccion}', '${r.telefono}')">Editar</button>
-              <button onclick="eliminarRestaurante(${r.id})">Eliminar</button>
-            </td>
-          </tr>`;
-      });
+  fetch(CONFIG.API_BASE + 'read.php', {
+    headers: {
+      'X-API-KEY': CONFIG.API_KEY
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    const tabla = document.getElementById('tabla');
+    tabla.innerHTML = '';
+    data.forEach(r => {
+      tabla.innerHTML += `
+        <tr>
+          <td>${r.id}</td>
+          <td>${r.nombre}</td>
+          <td>${r.direccion}</td>
+          <td>${r.telefono}</td>
+          <td>
+            <button onclick="editarRestaurante(${r.id}, '${r.nombre}', '${r.direccion}', '${r.telefono}')">Editar</button>
+            <button onclick="eliminarRestaurante(${r.id})">Eliminar</button>
+          </td>
+        </tr>`;
     });
+  });
 }
 
 function crearRestaurante() {
@@ -36,10 +40,13 @@ function crearRestaurante() {
   if (id) {
     // Actualizar
     formData.append('id', id);
-    fetch(API + 'update.php', {
-      method: 'POST',
-      body: formData
-    })
+    fetch(CONFIG.API_BASE + 'create.php', {
+    method: 'POST',
+    body: formData,
+    headers: {
+    'X-API-KEY': CONFIG.API_KEY
+    }
+  })
     .then(res => res.json())
     .then(() => {
       cargarRestaurantes();
@@ -47,9 +54,12 @@ function crearRestaurante() {
     });
   } else {
     // Crear
-    fetch(API + 'create.php', {
+    fetch(CONFIG.API_BASE + 'create.php', {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: {
+        'X-API-KEY': CONFIG.API_KEY
+      }
     })
     .then(res => res.json())
     .then(() => {
@@ -83,15 +93,18 @@ function resetForm() {
 }
 
 function eliminarRestaurante(id) {
-  if (!confirm('¿Seguro que querés eliminar este restaurante?')) return;
+  if (!confirm('¿Seguro que quieres eliminar este restaurante?')) return;
 
   const formData = new FormData();
   formData.append('id', id);
 
-  fetch(API + 'delete.php', {
-    method: 'POST',
-    body: formData
-  })
+  fetch(CONFIG.API_BASE + 'delete.php', {
+  method: 'POST',
+  body: formData,
+  headers: {
+    'X-API-KEY': CONFIG.API_KEY
+  }
+  })  
   .then(res => res.json())
   .then(() => cargarRestaurantes());
 }

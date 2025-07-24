@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
-require_once '../config/config.php';
-require_once '../auth.php';
+require_once 'config.php';
+require_once 'auth.php';
 require '../db/database.php';
 
 if (!isset($_POST['nombre'], $_POST['direccion'], $_POST['telefono'])) {
@@ -12,7 +12,7 @@ if (!isset($_POST['nombre'], $_POST['direccion'], $_POST['telefono'])) {
 }
 
 // Crear nuevo restaurante
-$restaurante = R::dispense('restaurante'); // nombre de la tabla: 'restaurante' (RedBean la pluraliza)
+$restaurante = R::dispense('restaurante'); 
 $restaurante->nombre = $_POST['nombre'];
 $restaurante->direccion = $_POST['direccion'];
 $restaurante->telefono = $_POST['telefono'];

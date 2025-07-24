@@ -2,7 +2,7 @@
 require_once 'config.php';
 
 // Obtener los encabezados HTTP de la petición
-$headers = getallheaders();
+$headers = array_change_key_case(getallheaders(), CASE_UPPER);
 
 // Verificar si se envió la cabecera 'X-API-KEY' y si es válida
 if (!isset($headers['X-API-KEY']) || $headers['X-API-KEY'] !== $_ENV['API_KEY']) {
