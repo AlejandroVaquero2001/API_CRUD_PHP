@@ -5,7 +5,7 @@ Para probarlo simplemente es necesario contar con Docker Desktop
 
 # CÓMO EJECUTAR O DESPLEGAR LA API
 
-1.  Con la terminal de comandos accederemos a la ruta del proyecto '/API_CRUD_PRUEBA' donde se encuentran los archivos para levantar el contenedor en Docker. (Dockerfile y docker-compose.yml)
+1.  Con la terminal de comandos accederemos a la ruta del proyecto donde se encuentran los archivos necesarios para levantar el contenedor en Docker. (Dockerfile y docker-compose.yml)
 
 2.  Una vez en la carpeta en la terminal levantaremos el proyecto con el comando: docker compose up . Este comando se encargará de crear una imagen para el servidor Apache y MySQL en los puertos 8080 y 3306 respectivamente.
 
