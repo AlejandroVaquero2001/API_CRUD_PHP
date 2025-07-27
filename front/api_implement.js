@@ -42,7 +42,7 @@ function crearRestaurante() {
   if (id) {
     // Actualizar
     formData.append('id', id);
-    fetch(CONFIG.API_BASE + 'create.php', {
+    fetch(CONFIG.API_BASE + 'update.php', {
     method: 'POST',
     body: formData,
     headers: {

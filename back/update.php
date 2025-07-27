@@ -4,8 +4,8 @@ header('Content-Type: application/json');
 
 require '../db/database.php';
 
-require_once '../config/config.php';
-require_once '../auth.php';
+require_once 'config.php';
+require_once 'auth.php';
 
 if (!isset($_POST['id'], $_POST['nombre'], $_POST['direccion'], $_POST['telefono'])) {
     http_response_code(400);
