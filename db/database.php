@@ -4,8 +4,6 @@ require_once __DIR__ . '/../libs/rb-mysql.php';
 // Conectar con MySQL
 R::setup('mysql:host=db;dbname=restaurantes_db', 'root', 'root');
 
-// Opcional: modo de desarrollo
-R::freeze(false);
 
 // Verificar conexión
 if (!R::testConnection()) {

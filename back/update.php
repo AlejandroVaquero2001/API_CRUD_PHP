@@ -1,11 +1,30 @@
 <?php
 header('Content-Type: application/json');
 
-
 require '../db/database.php';
-
 require_once 'config.php';
 require_once 'auth.php';
+
+/**
+ * Función para actualizar un restaurante existente.
+ *
+ * @param int $id
+ * @param string $nombre
+ * @param string $direccion
+ * @param string $telefono
+ * @return bool True si se actualizó, false si no existe o no se pudo actualizar
+ */
+function actualizarRestaurante($id, $nombre, $direccion, $telefono) {
+    $restaurante = R::load('restaurante', $id);
+    if ($restaurante->id == 0) {
+        return false;
+    }
+    $restaurante->nombre = $nombre;
+    $restaurante->direccion = $direccion;
+    $restaurante->telefono = $telefono;
+    R::store($restaurante);
+    return true;
+}
 
 if (!isset($_POST['id'], $_POST['nombre'], $_POST['direccion'], $_POST['telefono'])) {
     http_response_code(400);
@@ -13,19 +32,13 @@ if (!isset($_POST['id'], $_POST['nombre'], $_POST['direccion'], $_POST['telefono
     exit;
 }
 
-// Cargar restaurante existente
-$restaurante = R::load('restaurante', $_POST['id']);
+$id = intval($_POST['id']);
+$nombre = $_POST['nombre'];
+$direccion = $_POST['direccion'];
+$telefono = $_POST['telefono'];
 
-if ($restaurante->id == 0) {
+if (actualizarRestaurante($id, $nombre, $direccion, $telefono)) {
+    echo json_encode(["message" => "Restaurante actualizado"]);
+} else {
     echo json_encode(["error" => "Restaurante no encontrado"]);
-    exit;
 }
-
-// Actualizar campos
-$restaurante->nombre = $_POST['nombre'];
-$restaurante->direccion = $_POST['direccion'];
-$restaurante->telefono = $_POST['telefono'];
-
-R::store($restaurante);
-
-echo json_encode(["message" => "Restaurante actualizado"]);

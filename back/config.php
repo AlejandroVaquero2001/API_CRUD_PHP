@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * Función para cargar las variables de entorno desde un archivo .env.
+ *  Evitando hardcodeo de datos sensibles.
+ *
+ * @param  mixed $ruta donde se encuentra el archivo .env, omitido por el .gitignore
+ * @return void
+ */
 function cargarEnv($ruta = __DIR__ . '/../.env') {
     if (!file_exists($ruta)) return;
 
